@@ -50,12 +50,15 @@
 
 import React from "react";
 import Header from "./Component/header";
+import {Input, Button} from "./Component/name"
 
 function App() {
   return  (
     <React.Fragment>
       <h1>Latihan Export Import</h1>
       <Header/>
+      <Input/>
+      <Button/>
     </React.Fragment>
   );
 }
