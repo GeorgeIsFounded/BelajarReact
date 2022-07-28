@@ -1,5 +1,16 @@
-.input {
-    background-color: red;
-    padding: 5px 10px;
-    border: 1px solid red;
+.identitas {
+    background-color: aqua;
+    border: 2px solid black;
+    padding: 5px 15px;
+    width: 150px;
+    margin-left: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.section {
+    display: flex;
+    flex-direction: row;
+}
+h1 {
+    margin-left: 10px;
 }
