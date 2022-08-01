@@ -6,10 +6,11 @@
     margin-left: 10px;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .section {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 h1 {
     margin-left: 10px;
