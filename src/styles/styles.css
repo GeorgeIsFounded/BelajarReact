@@ -3,3 +3,7 @@
     padding: 5px 10px;
     border: 1px solid red;
 }
+.line {
+    height: 20px;
+    width: 100vh;
+}

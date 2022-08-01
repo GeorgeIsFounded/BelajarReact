@@ -51,9 +51,40 @@
 import React from "react";
 
 function App() {
+  let [produk, setProduk] = React.useState([
+    {
+      jenis : "Elektronik",
+      produk : "Handphone",
+      brand : [
+        {
+          nama : "Samsung",
+          harga : "Rp. 1.000.000",
+        },
+        {
+          nama : "Xiaomi",
+          harga : "Rp. 500.000",
+        },
+      ],
+    },
+    {
+      jenis : "Transportasi",
+      produk : "Mobil",
+      brand : [
+        {
+          nama : "Toyota",
+          harga : "Rp. 1.000.000.000",
+        },
+        {
+          nama : "Honda",
+          harga : "Rp. 500.000.000",
+        }
+      ]
+    }
+  ])
   return  (
     <React.Fragment>
-      <h1>Hello</h1>
+      <div className="line"></div>
+      <h1>Latihan 1</h1>
     </React.Fragment>
   );
 }
