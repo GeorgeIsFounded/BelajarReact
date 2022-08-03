@@ -29,7 +29,7 @@
 // // function App() {
 // //   return (
 // //     <div>
-// //       <h1>Helloh</h1>
+// //       <h1>Hello World</h1>
 // //     </div>
 // //   )
 // // }
@@ -49,16 +49,35 @@
 // export default App;
 
 import React from "react";
-import Header from "./Component/header";
-import {Input, Button} from "./Component/name"
+import Layout from "./komponen/layout";
+import "./styles/styles.css"
+import Button from "./komponen/button";
 
 function App() {
-  return  (
+  return (
     <React.Fragment>
-      <h1>Latihan Export Import</h1>
-      <Header/>
-      <Input/>
-      <Button/>
+      <h1>Belajar Props 2</h1>
+      <Layout title={'rekomendasi 1'}>
+        <h1>SMK MADINATULQURAN</h1>
+      </Layout>
+      <Layout title={'rekomendasi 2'}>
+        <h1>SMK IDN</h1>
+      </Layout>
+      <Layout title={'rekomendasi 3'}>
+        <h1>SMK CIPECANG</h1>
+      </Layout>
+      <Button onclick={() => {
+        console.log("button ini di click")
+      }}
+        color="blue" title={'simpan'} />
+      <Button title={'batal'} onclick={() => {
+        console.log("button batal di klik");
+      }}
+      disabled={true}
+      />
+      <Button color="green" title={'update'} onclick={() => {
+        console.log("button ini di disable")
+      }}/>
     </React.Fragment>
   );
 }
