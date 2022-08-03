@@ -49,37 +49,41 @@
 // export default App;
 
 import React from "react";
-import Layout from "./komponen/layout";
 import "./styles/styles.css"
 import Button from "./komponen/button";
 
-function App() {
-  return (
-    <React.Fragment>
-      <h1>Belajar Props 2</h1>
-      <Layout title={'rekomendasi 1'}>
-        <h1>SMK MADINATULQURAN</h1>
-      </Layout>
-      <Layout title={'rekomendasi 2'}>
-        <h1>SMK IDN</h1>
-      </Layout>
-      <Layout title={'rekomendasi 3'}>
-        <h1>SMK CIPECANG</h1>
-      </Layout>
-      <Button onclick={() => {
-        console.log("button ini di click")
-      }}
-        color="blue" title={'simpan'} />
-      <Button title={'batal'} onclick={() => {
-        console.log("button batal di klik");
-      }}
-      disabled={true}
-      />
-      <Button color="green" title={'update'} onclick={() => {
-        console.log("button ini di disable")
-      }}/>
-    </React.Fragment>
-  );
+export default function App() {
+  let [name, setName]= React.useState('')
+  let [email, setEmail]= React.useState('')
+  let [password, setPassword]= React.useState('')
+  let [confirmPassword, setConfirmPassword]= React.useState('')
+  return(
+    <React.Fragmnet>
+      
+    </React.Fragmnet>
+  )
 }
 
-export default App;
+// function App() {
+//   let [count, setCount] = React.useState(0);
+//   const handleTambah = (git ) => {
+//     setCount(count + 1);
+//   };
+//   const handleKurang = () => {
+//     setCount(count - 1);
+//   }
+//   return (
+//     <React.Fragment>
+//       <div className="counter">
+//         <h1>Count = {count}</h1>
+//         <Button onClick={handleTambah} title="Tambah" color="cyan" />
+//         <Button disabled={count <= 0 ? true : false} onClick={handleKurang} title="kurang" color="blue" />
+//         <Button disabled={count === 0 ? true : false} onClick={() => {
+//           setCount(0);
+//         }} title="reset" />
+//       </div>
+//     </React.Fragment>
+//   );
+// }
+
+// export default App;
