@@ -49,6 +49,7 @@
 // export default App;
 
 import React from "react";
+import NamaProduk from "./produk";
 
 function App() {
   let [produk, setProduk] = React.useState([
@@ -85,6 +86,7 @@ function App() {
     <React.Fragment>
       <div className="line"></div>
       <h1>Latihan 1</h1>
+      <NamaProduk data = {produk}/>
     </React.Fragment>
   );
 }
