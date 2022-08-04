@@ -48,19 +48,91 @@
 
 // export default App;
 
+// let [name, setName]= React.useState('')
+// let [email, setEmail]= React.useState('')
+// let [password, setPassword]= React.useState('')
+// let [confirmPassword, setConfirmPassword]= React.useState('')
+
 import React from "react";
 import "./styles/styles.css"
 import Button from "./komponen/button";
+import Input from "./komponen/input";
 
 export default function App() {
-  let [name, setName]= React.useState('')
-  let [email, setEmail]= React.useState('')
-  let [password, setPassword]= React.useState('')
-  let [confirmPassword, setConfirmPassword]= React.useState('')
-  return(
-    <React.Fragmnet>
-      
-    </React.Fragmnet>
+  const [values, setValues] = React.useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+  const handleChange =(e) => {
+    e.preventDefault()
+    console.log("ok shiap jalan")
+    setValues((values) => {
+      return{
+        ...values,
+        [e.target.name] : e.target.value
+      }
+    })
+  }
+  return (
+    <React.Fragment>
+      <div style={{ display: 'flex' }}>
+        <form style={{ width: "50%" }}>
+          <Input
+            name="username"
+            value={values.username}
+            label={"Username"}
+            placeholder='username'
+            onChange={(event) => {
+              event.preventDefault();
+              // console.log("ok jalan")
+              // console.log(event)
+              setValues((values) => {
+                return {
+                  ...values,
+                  username: event.target.value,
+                }
+              })
+            }}
+          />
+          <Input
+            name="email"
+            value={values.email}
+            isError={true}
+            label={"Email"}
+            textError="errors"
+            placeholder="email"
+            onChange={handleChange}
+          />
+          <Input
+            name="password"
+            value={values.password}
+            label={"Password"} 
+            placeholder="password"
+            onChange={handleChange}
+          />
+          <Input
+            name="confirmPassword"
+            value={values.confirmPassword}
+            label={"ConfirmPassword"} 
+            placeholder="confirm-password"
+            onChange={handleChange}
+          />
+          <Button title={"simpan"} />
+        </form>
+        <div
+          style={{
+            marginLeft: "50px"
+          }}
+        >
+          <p>Username : {values?.username}</p>
+          <p>Email : {values?.email}</p>
+          <p>Password : {values?.password}</p>
+          <p>Confirm-Password : {values?.confirmPassword}</p>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 

@@ -1,7 +1,12 @@
 .input {
-    background-color: red;
     padding: 5px 10px;
-    border: 1px solid red;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 .layout {
     border: 2px solid black;
@@ -10,12 +15,41 @@
     margin-top: 10px;
 }
 .button {
-    color: black;
+    background-color: beige;
     padding: 5px 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     cursor: pointer;
     margin-top: 10px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 30px;
     width: 200px;
+    font-weight: bold;
+}
+.input-text {
+    padding: 5px 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 35%;
+    margin-bottom: 10px;
+}
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+p {
+    padding: 5px 10px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 20px;
+    height: 70px;
+    font-weight: medium;
 }
