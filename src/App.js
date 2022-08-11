@@ -57,6 +57,7 @@ import React from "react";
 import "./styles/styles.css"
 import Button from "./komponen/button";
 import Input from "./komponen/input";
+import Card from "./komponen/card";
 
 export default function App() {
   const [values, setValues] = React.useState({
@@ -65,59 +66,135 @@ export default function App() {
     password: "",
     confirmPassword: ""
   });
-  const handleChange =(e) => {
+  const [data, setData] = React.useState([]);
+  const [errors, setErrors] = React.useState({});
+  const handleChange = (e) => {
     e.preventDefault()
     console.log("ok shiap jalan")
     setValues((values) => {
-      return{
+      return {
         ...values,
-        [e.target.name] : e.target.value
+        [e.target.name]: e.target.value
+      }
+    });
+
+    if (e.target.value !== "") {
+      setErrors({
+        ...errors,
+        [e.target.name]: true
+      });
+    }
+    else {
+      setErrors({
+        ...errors,
+        [e.target.name]: true
+      });
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("form tersubmit")
+
+    values.id = new Date().getTime()
+    setData((data) => {
+      return [...data, values];
+    })
+
+    setData(() => {
+      return [...data, values];
+    })
+
+    setData((data) => {
+      return [...data, values];
+    })
+
+    setValues((values) => {
+      return {
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
       }
     })
   }
+
+  const handleBlur = (e) => {
+    e.preventDefault()
+    if (e.target.value === "") {
+      setErrors((errors) => {
+        return {
+          ...errors,
+          [e.target.name]: true
+        }
+      })
+    }
+    setValues((errors) => {
+      return {
+        ...values,
+        [e.target.name]: true
+      }
+    })
+  }
+
+  console.log("errors", errors);
+
   return (
     <React.Fragment>
       <div style={{ display: 'flex' }}>
-        <form style={{ width: "50%" }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ width: "50%" }}>
           <Input
+            isError={errors?.username}
+            tectError={"please fill this input"}
             name="username"
             value={values.username}
             label={"Username"}
             placeholder='username'
-            onChange={(event) => {
-              event.preventDefault();
-              // console.log("ok jalan")
-              // console.log(event)
-              setValues((values) => {
-                return {
-                  ...values,
-                  username: event.target.value,
-                }
-              })
-            }}
+            onBlur={handleBlur}
+            onChange={handleChange}
+          // onChange={(event) => {
+          //   event.preventDefault();
+          //   // console.log("ok jalan")
+          //   // console.log(event)
+          //   setValues((values) => {
+          //     return {
+          //       ...values,
+          //       username: event.target.value,
+          //     }
+          //   })
+          // }}
           />
           <Input
+            isError={errors?.username}
+            tectError={"please fill this input"}
             name="email"
             value={values.email}
-            isError={true}
             label={"Email"}
-            textError="errors"
             placeholder="email"
             onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Input
+            isError={errors?.username}
+            tectError={"please fill this input"}
             name="password"
             value={values.password}
-            label={"Password"} 
+            label={"Password"}
             placeholder="password"
             onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Input
+            isError={errors?.username}
+            tectError={"please fill this input"}
             name="confirmPassword"
             value={values.confirmPassword}
-            label={"ConfirmPassword"} 
+            label={"ConfirmPassword"}
             placeholder="confirm-password"
             onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Button title={"simpan"} />
         </form>
@@ -126,10 +203,13 @@ export default function App() {
             marginLeft: "50px"
           }}
         >
-          <p>Username : {values?.username}</p>
+          {/* <p>Username : {values?.username}</p>
           <p>Email : {values?.email}</p>
           <p>Password : {values?.password}</p>
-          <p>Confirm-Password : {values?.confirmPassword}</p>
+          <p>Confirm-Password : {values?.confirmPassword}</p> */}
+
+          <Card data={data} value={values} />
+
         </div>
       </div>
     </React.Fragment>
