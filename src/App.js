@@ -1,59 +1,64 @@
-// // import logo from './logo.svg';
-// // import './App.css';
-
-// import React from 'react';
-
-// // function App() {
-// //   return (
-// //     <div className="App">
-// //       <header className="App-header">
-// //         <img src={logo} className="App-logo" alt="logo" />
-// //         <p>
-// //           Edit <code>src/App.js</code> and save to reload.
-// //         </p>
-// //         <a
-// //           className="App-link"
-// //           href="https://reactjs.org"
-// //           target="_blank"
-// //           rel="noopener noreferrer"
-// //         >
-// //           Hello World
-// //         </a>
-// //       </header>
-// //     </div>
-// //   );
-// // }
-
-// // export default App;
-
-// // function App() {
-// //   return (
-// //     <div>
-// //       <h1>Helloh</h1>
-// //     </div>
-// //   )
-// // }
-
-// function App() {
-//   let a = 20
-//   let b = 10
-//   return (
-//     <React.Fragment>
-//       <h1>Hello World ke-{a}</h1>
-//       <h1>Hello World ke-{a+b}</h1>
-//       <button>button</button>
-//     </React.Fragment>
-//   );
-// }
-
-// export default App;
-
 import React from "react";
+import "./styles/styles.css";
 
 function App() {
-  return  (
+
+  let [count, setCount] = React.useState(0)
+  let [message, setMessage] = React.useState(0)
+  let [text, setText] = React.useState(false)
+  let [isLoading, setIsLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    setMessage(message + 1)
+    console.log('useEffect berjalan')
+  }, [count, text])
+
+  React.useEffect(() => {}, []);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 5000)
+  }, [])
+
+  if (isLoading) {
+    return <div className="spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    </div>
+  }
+
+  // React.useEffect(() => {
+  //   console.log('useEffect')
+
+  //   setCount(count + 1)
+  //   console.log(count)
+  // }, []);
+
+  return (
     <React.Fragment>
-      <h1>Hello</h1>
+      <h1>Belajar use effect</h1>
+      <h3>{message === 10 ? 'ini sepuluh' : 'bukan sepuluh'}</h3>
+      <h1>Message : {message}</h1>
+      <h1>Count : {count}</h1>
+      <button
+      onClick={() => {
+        setCount(count + 1)
+      }}
+      >
+        MORE
+      </button>
+      <button
+      onClick={() => {
+        setText(!text)
+      }}
+      >
+        CHANGE
+      </button>
     </React.Fragment>
   );
 }
