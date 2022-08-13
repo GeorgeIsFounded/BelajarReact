@@ -1,7 +1,13 @@
-.input {
-    background-color: red;
+Input {
     padding: 5px 10px;
-    border: 1px solid red;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50vh;
+    height: 30px;
+    display: flex;
+    font-family: Poppins;
+    margin-top: 10px;
+    justify-content: space-between;
 }
 
 h1 {
@@ -10,70 +16,58 @@ h1 {
 
 p {
     font-family: Poppins;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 20px;
 }
 
 h3 {
     font-family: Poppins;
 }
 
-.spinner {
-    width: 44px;
-    height: 44px;
-    animation: spinner-y0fdc1 2s infinite ease;
-    transform-style: preserve-3d;
+h4 {
+    color: red;
 }
 
-.spinner>div {
+.Moco {
     display: flex;
-    justify-content: center;
-    background-color: rgba(0, 77, 255, 0.2);
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    border: 2px solid #004dff;
+    justify-content: space-between;
 }
 
-.spinner div:nth-of-type(1) {
-    transform: translateZ(-22px) rotateY(180deg);
+.container {
+    filter: drop-shadow(10px);
+    width: 500px;
+    border: 2px solid black;
+    font-family: Poppins;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
-.spinner div:nth-of-type(2) {
-    transform: rotateY(-270deg) translateX(50%);
-    transform-origin: top right;
+.submit {
+    filter: drop-shadow(10px);
+    padding: 10px 30px;
+    border: 2px solid black;
+    font-family: Poppins;
+    display: flex;
+    flex-direction: column;
+    margin-left: 100vh;
+    border-radius: 10px;
 }
 
-.spinner div:nth-of-type(3) {
-    transform: rotateY(270deg) translateX(-50%);
-    transform-origin: center left;
+.gimm {
+    display: flex;
+    justify-content: row;
 }
 
-.spinner div:nth-of-type(4) {
-    transform: rotateX(90deg) translateY(-50%);
-    transform-origin: top center;
-}
-
-.spinner div:nth-of-type(5) {
-    transform: rotateX(-90deg) translateY(50%);
-    transform-origin: bottom center;
-}
-
-.spinner div:nth-of-type(6) {
-    transform: translateZ(22px);
-}
-
-@keyframes spinner-y0fdc1 {
-    0% {
-        transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
-    }
-
-    50% {
-        transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
-    }
-
-    100% {
-        transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
-    }
+.button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 10px 60px;
+    margin-right: 50px;
+    border-radius: 10px;
+    font-family: Poppins;
+    font-weight: bold;
 }
