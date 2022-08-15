@@ -71,3 +71,21 @@ h4 {
     font-family: Poppins;
     font-weight: bold;
 }
+.red {
+    color: black;
+    background-color: red;
+    height: 50vh;
+    width: 50vh;
+}
+.yellow {
+    color: black;
+    background-color: yellow;
+    height: 50vh;
+    width: 50vh;
+}
+.green {
+    color: black;
+    background-color: green;
+    height: 50vh;
+    width: 50vh;
+}
