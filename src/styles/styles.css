@@ -1,5 +1,46 @@
 .input {
-    background-color: red;
+    margin-top: 4px;
+    height: 20px;
+    margin-right: 10px;
     padding: 5px 10px;
-    border: 1px solid red;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.not {
+    display: flex;
+    justify-content: space-between;
+    width: 200vh;
+    border-bottom: 2px solid black;
+    padding: 4px 10px;
+    margin-left: 40px;
+    box-shadow: 1px black;
+    font-family: Poppins;
+}
+.catatan {
+    font-family: Poppins;
+    font-size: 25px;
+    margin-left: 50px;
+}
+.judul {
+    width: 90vh;
+    margin-left: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 20px;
+}
+.Catatan {
+    width: 90vh;
+    margin-left: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.button {
+    height: 20px;
+    font-weight: Poppins;
+    background-color: cyan;
+    height: 20px;
+    border: 1px solid black;
+    width: 80vh;
+    margin-left: 100px;
+    border-radius: 5px;
 }

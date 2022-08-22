@@ -1,66 +1,47 @@
-// // import logo from './logo.svg';
-// // import './App.css';
-
-// import React from 'react';
-
-// // function App() {
-// //   return (
-// //     <div className="App">
-// //       <header className="App-header">
-// //         <img src={logo} className="App-logo" alt="logo" />
-// //         <p>
-// //           Edit <code>src/App.js</code> and save to reload.
-// //         </p>
-// //         <a
-// //           className="App-link"
-// //           href="https://reactjs.org"
-// //           target="_blank"
-// //           rel="noopener noreferrer"
-// //         >
-// //           Hello World
-// //         </a>
-// //       </header>
-// //     </div>
-// //   );
-// // }
-
-// // export default App;
-
-// // function App() {
-// //   return (
-// //     <div>
-// //       <h1>Helloh</h1>
-// //     </div>
-// //   )
-// // }
-
-// function App() {
-//   let a = 20
-//   let b = 10
-//   return (
-//     <React.Fragment>
-//       <h1>Hello World ke-{a}</h1>
-//       <h1>Hello World ke-{a+b}</h1>
-//       <button>button</button>
-//     </React.Fragment>
-//   );
-// }
-
-// export default App;
-
 import React from "react";
-import Header from "./Component/header";
-import {Input, Button} from "./Component/name"
+import Textarea from "./Component/Textarea";
+import Input from "./Component/Input";
+import Button from "./Component/Button";
+import "./styles/styles.css";
+import Card from "./Component/Card.jsx";
 
 function App() {
-  return  (
+  const [values, setValues] = React.useState([]);
+  const [data, setData] = React.useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      id : new Date().getTime(),
+      text: data,
+      completed: false,
+    }
+
+    setValues([... values].concat(newData));
+    setData('')
+  };
+  
+  return (
     <React.Fragment>
-      <h1>Latihan Export Import</h1>
-      <Header/>
-      <Input/>
-      <Button/>
+      <h1 className="not">Notes <input className="input" /></h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <h1 className="catatan">Buat Catatan</h1>
+          <Input
+            className="judul"
+            name="username"
+            placeholder={"Judul"}
+            value={data}
+            onChange={(e) => setData(e.target.value)}
+          />
+          <button type="submit" className="button">Button</button>
+        </div>
+      </form>
+      {values.map((data) => <div>{data.text}</div>)}
     </React.Fragment>
   );
 }
+
 
 export default App;
