@@ -2,17 +2,20 @@ import React from "react";
 import Input from "./component/Input";
 import TextArea from "./component/TextArea";
 import Button from "./component/Button";
-
 import Card from "./component/Card";
+import TahunTerbit from "./component/TahunTerbit";
+
 export default function App() {
   const [values, setValues] = React.useState({
     id: "",
     title: "",
+    tahun: "",
     body: "",
     archived: false,
     createdAt: "",
   });
 
+  const [tahun, setTahun] = React.useState([]);
   const [catatan, setCatatan] = React.useState([]);
   const [errors, setErrors] = React.useState({});
   const [fromError, setFormError] = React.useState("");
@@ -58,6 +61,7 @@ export default function App() {
     setCatatan(() => {
       return hasilFilter;
     });
+    
     // setCatatan(() => {
     //   return [...hasilFilter]
     // });
@@ -68,7 +72,7 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (values.title === "" || values.body === "") {
+    if (values.title === "" || values.body === "" || values.tahun === "" || values.tahun > 2022 || values.tahun < 2020) {
       setFormError("Form Wajib di isi");
       if (values.title === "") {
         setErrors((errors) => {
@@ -86,6 +90,22 @@ export default function App() {
           };
         });
       }
+      if (values.tahun > 2022) {
+        setErrors((errors) => {
+          return {
+            ...errors,
+            tahun: true,
+          };
+        });
+      }
+      if (values.tahun < 2020) {
+        setErrors((errors) => {
+          return {
+            ...errors,
+            tahun: true,
+          };
+        });
+      }
       return;
     }
 
@@ -93,10 +113,15 @@ export default function App() {
       return [...catatan, values];
     });
 
+    setTahun((tahun) => {
+      return [...tahun, values];
+    });
+
     setValues(() => {
       return {
         id: "",
         title: "",
+        tahun: "",  
         body: "",
         archived: false,
         createdAt: "",
@@ -141,11 +166,20 @@ export default function App() {
               onBlur={handleBlur}
               error={errors.body}
             />
-
+            <TahunTerbit
+              type="number"
+              name={"tahun"}
+              id="input"
+              value={values.tahun}
+              title={"TahunTerbit"}
+              placeholder="Tahun Terbit"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.tahun}
+            />
             <Button title="Simpan" />
           </form>
         </div>
-
         <div className="col-span-1 overflow-auto w-full  px-5 py-3 border h-96">
           <h1 className="text-xl font-bold ">Daftar Catatan</h1>
           <div className="grid grid-cols-4 gap-5">
@@ -159,6 +193,7 @@ export default function App() {
                       handleDelete={handleDelete}
                       title={item.title}
                       body={item.body}
+                      tahun={item.tahun}
                       createdAt={item.createdAt}
                       id={item.id}
                     />
