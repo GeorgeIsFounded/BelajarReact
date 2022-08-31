@@ -1,209 +1,79 @@
 import React from "react";
-import Input from "./component/Input";
-import TextArea from "./component/TextArea";
-import Button from "./component/Button";
-import Card from "./component/Card";
-import TahunTerbit from "./component/TahunTerbit";
+import { Routes, Route, Link, NavLink, Navigate } from "react-router-dom";
+import Home from "./pages/home";
+import About from "./pages/about";
+import Setting from "./pages/setting";
+import Detail from "./pages/detail";
+import NotFound from "./pages/NotFound";
+import computer from "./pages/setting/computer";
+import phone from "./pages/setting/phone";
+import profile from "./pages/setting/profile";
 
-export default function App() {
-  const [values, setValues] = React.useState({
-    id: "",
-    title: "",
-    tahun: "",
-    body: "",
-    archived: false,
-    createdAt: "",
-  });
-
-  const [tahun, setTahun] = React.useState([]);
-  const [catatan, setCatatan] = React.useState([]);
-  const [errors, setErrors] = React.useState({});
-  const [fromError, setFormError] = React.useState("");
-  const handleChange = (e) => {
-    setValues((values) => {
-      return {
-        ...values,
-        [e.target.name]: e.target.value,
-        id: new Date().getTime(),
-        createdAt: new Date(),
-      };
-    });
-    setFormError("");
-
-    handleBlur(e);
-  };
-
-  const handleBlur = (e) => {
-    if (e.target.value === "") {
-      setErrors((errors) => {
-        return {
-          ...errors,
-          [e.target.name]: true,
-        };
-      });
-    } else {
-      setErrors((errors) => {
-        return {
-          ...errors,
-          [e.target.name]: false,
-        };
-      });
-    }
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    console.log("jalan");
-    const hasilFilter = catatan.filter((item) => {
-      return item.id !== parseInt(e.target.value);
-    });
-
-    setCatatan(() => {
-      return hasilFilter;
-    });
-    
-    // setCatatan(() => {
-    //   return [...hasilFilter]
-    // });
-
-    console.log("hasil filter", hasilFilter);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (values.title === "" || values.body === "" || values.tahun === "" || values.tahun > 2022 || values.tahun < 2020) {
-      setFormError("Form Wajib di isi");
-      if (values.title === "") {
-        setErrors((errors) => {
-          return {
-            ...errors,
-            title: true,
-          };
-        });
-      }
-      if (values.body === "") {
-        setErrors((errors) => {
-          return {
-            ...errors,
-            body: true,
-          };
-        });
-      }
-      if (values.tahun > 2022) {
-        setErrors((errors) => {
-          return {
-            ...errors,
-            tahun: true,
-          };
-        });
-      }
-      if (values.tahun < 2020) {
-        setErrors((errors) => {
-          return {
-            ...errors,
-            tahun: true,
-          };
-        });
-      }
-      return;
-    }
-
-    setCatatan((catatan) => {
-      return [...catatan, values];
-    });
-
-    setTahun((tahun) => {
-      return [...tahun, values];
-    });
-
-    setValues(() => {
-      return {
-        id: "",
-        title: "",
-        tahun: "",  
-        body: "",
-        archived: false,
-        createdAt: "",
-      };
-    });
-    console.log("form ini sudah di submit");
-  };
-
-  console.log("catatan", catatan);
-  console.log("error", errors);
+function App() {
   return (
-    <div className=" w-screen min-h-screen text-gray-500 p-5 space-y-5">
-      <div className="grid grid-cols-5 border-b-2 py-2">
-        <h1 className="text-2xl">Notes</h1>
-        <div className="col-start-5">
-          <Input placeholder="Cari Catatan ..." />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 gap-5">
-        <div className="flex items-center justify-center"></div>
-        <div className="col-span-1   flex items-center justify-center">
-          <form onSubmit={handleSubmit} className="space-y-2">
-            <p className="text-red-500 text-lg">{fromError}</p>
-            <h1 className="text-xl">Buat Catatan</h1>
-            <Input
-              name={"title"}
-              id="title"
-              value={values.title}
-              title={"Judul"}
-              placeholder="Judul"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.title}
-            />
-            <TextArea
-              name={"body"}
-              id="body"
-              value={values.body}
-              title={"Body"}
-              placeholder="Catatan"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.body}
-            />
-            <TahunTerbit
-              type="number"
-              name={"tahun"}
-              id="input"
-              value={values.tahun}
-              title={"TahunTerbit"}
-              placeholder="Tahun Terbit"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.tahun}
-            />
-            <Button title="Simpan" />
-          </form>
-        </div>
-        <div className="col-span-1 overflow-auto w-full  px-5 py-3 border h-96">
-          <h1 className="text-xl font-bold ">Daftar Catatan</h1>
-          <div className="grid grid-cols-4 gap-5">
-            {catatan.length === 0 ? (
-              <div>Tidak Ada Catatan</div>
-            ) : (
-              catatan.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <Card
-                      handleDelete={handleDelete}
-                      title={item.title}
-                      body={item.body}
-                      tahun={item.tahun}
-                      createdAt={item.createdAt}
-                      id={item.id}
-                    />
-                  </div>
-                );
-              })
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+    <React.Fragment>
+      <section className="space-x-5 border py-5">
+        {/* <Link to={"/"} >Home</Link>
+        <Link to={"/setting"} >Setting</Link>
+        <Link to={'/about'} >About</Link> */}
+        <NavLink
+          exact
+          to="/"
+          style={({ isActive }) =>
+            isActive
+              ? {
+                color: "red",
+              }
+              : undefined
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/about"
+          style={({ isActive }) =>
+            isActive
+              ? {
+                color: "red",
+              }
+              : undefined
+          }
+        >
+          About
+        </NavLink>
+
+        <NavLink
+          to="/setting"
+          className={({ isActive }) =>
+            isActive ? 'text-white border p-2 bg-red-500'
+              : undefined
+          }
+        // style={({ isActive }) =>
+        //   isActive
+        //     ? {
+        //         color: "red",
+        //       }
+        //     : undefined
+        // }
+        >
+          Setting
+        </NavLink>
+      </section>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/setting" element={<Setting />}>
+          <Route path="phone" element={<phone />} />
+          <Route path="profile" element={<profile />} />
+          <Route path="computer" element={<computer />} />
+        </Route>
+        <Route path="/about" element={<About />} />
+        <Route path="/about/:id/:nama" element={<Detail />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
+      </Routes>
+    </React.Fragment>
   );
 }
+
+export default App;
