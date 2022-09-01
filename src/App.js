@@ -1,13 +1,17 @@
 import React from "react";
-import { Routes, Route, Link, NavLink, Navigate } from "react-router-dom";
+import { Routes, Route, Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Setting from "./pages/setting";
 import Detail from "./pages/detail";
 import NotFound from "./pages/NotFound";
-import computer from "./pages/setting/computer";
-import phone from "./pages/setting/phone";
-import profile from "./pages/setting/profile";
+import Computer from "./pages/setting/computer";
+import Phone from "./pages/setting/phone";
+import Profile from "./pages/setting/profile";
+import Apple from "./pages/setting/computer/apple";
+import Lenovo from "./pages/setting/computer/lenovo";
+import Asus from "./pages/setting/computer/asus";
+
 
 function App() {
   return (
@@ -62,9 +66,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/setting" element={<Setting />}>
-          <Route path="phone" element={<phone />} />
-          <Route path="profile" element={<profile />} />
-          <Route path="computer" element={<computer />} />
+          <Route path="phone" element={<Phone />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="computer" element={<Computer />} >
+            <Route path="lenovo" element={<Lenovo />} />
+            <Route path="apple" element={<Apple />} />
+            <Route path="asus" element={<Asus />} />
+          </Route>
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="/about/:id/:nama" element={<Detail />} />
