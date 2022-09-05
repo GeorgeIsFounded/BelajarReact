@@ -1,93 +1,55 @@
 import React from "react";
-import { Routes, Route, Link, NavLink, Navigate, useNavigate } from "react-router-dom";
+import Register from "./pages/register";
 import Home from "./pages/home";
-import About from "./pages/about";
-import Setting from "./pages/setting";
-import Detail from "./pages/detail";
-import NotFound from "./pages/NotFound";
-import Computer from "./pages/setting/computer";
-import Phone from "./pages/setting/phone";
-import Profile from "./pages/setting/profile";
-import Apple from "./pages/setting/computer/apple";
-import Lenovo from "./pages/setting/computer/lenovo";
-import Asus from "./pages/setting/computer/asus";
-
+import Login from "./pages/login";
+import Admin from "./pages/admin";
+import Dashboard from "./pages/admin/dashboard";
+import User from "./pages/admin/user";
+import Kelas from "./pages/admin/kelas";
+import { Routes, Route, Link, NavLink, Navigate } from "react-router-dom";
 
 function App() {
-  let navigate = useNavigate()
-  return (
-    <React.Fragment>
-      <section className="space-x-5 border py-5">
-        {/* <Link to={"/"} >Home</Link>
-        <Link to={"/setting"} >Setting</Link>
-        <Link to={'/about'} >About</Link> */}
-        <NavLink
-          exact
-          to="/"
-          style={({ isActive }) =>
-            isActive
-              ? {
-                color: "red",
-              }
-              : undefined
-          }
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="/about"
-          style={({ isActive }) =>
-            isActive
-              ? {
-                color: "red",
-              }
-              : undefined
-          }
-        >
-          About
-        </NavLink>
-        <NavLink
-          to="/setting"
-          className={({ isActive }) =>
-            isActive ? 'text-white border p-2 bg-red-500'
-              : undefined
-          }
-        // style={({ isActive }) =>
-        //   isActive
-        //     ? {
-        //         color: "red",
-        //       }
-        //     : undefined
-        // }
-        >
-          Setting
-        </NavLink>
-          <button
-          className="font-sans border rounded-lg border-black w-28 border-solid"
-          onClick={() => {
-            return navigate(-1)
-          }}>{" "}Back
-          </button>
-      </section>
+  return <React.Fragment>
+    <section className="flex space-x-5">
+      <NavLink
+        className="border-2 border-solid border-b-black rounded-lg px-5"
+        exact
+        to="/Register"
+        style={({ isActive }) =>
+          isActive
+            ? {
+              color: "blue",
+            }
+            : undefined
+        }
+      >
+        Register
+      </NavLink>
+      <NavLink
+        className="border-2 border-solid border-b-black rounded-lg px-5"
+        to="/admin"
+        style={({ isActive }) =>
+          isActive
+            ? {
+              color: "blue",
+            }
+            : undefined
+        }
+      >
+        Login
+      </NavLink>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/setting" element={<Setting />}>
-          <Route path="phone" element={<Phone />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="computer" element={<Computer />} >
-            <Route path="lenovo" element={<Lenovo />} />
-            <Route path="apple" element={<Apple />} />
-            <Route path="asus" element={<Asus />} />
-          </Route>
+        <Route path="/register" element={<Register />} />
+        <Route path="/admin" element={<Admin />} >
+          <Route path="Dashboard" element={<Dashboard />} />
+          <Route path="User" element={<User />} />
+          <Route path="Kelas" element={<Kelas />} />
         </Route>
-        <Route path="/about" element={<About />} />
-        <Route path="/about/:id/:nama" element={<Detail />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="/home" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </React.Fragment>
-  );
+    </section>
+  </React.Fragment>;
 }
 
 export default App;
