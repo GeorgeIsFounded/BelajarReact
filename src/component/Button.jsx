@@ -12,10 +12,8 @@ export default function Button({
       style ={{
         backgroundColor  : bg,
         opacity : disabled ? 0.8 : 1
-         
       }}
-      className={`w-full border 
-      } text-white py-1 rounded-md`}
+      className={`w-full border } text-white py-1 rounded-md`}
     >
       {title}
     </button>

@@ -21,7 +21,9 @@ export default function Setting() {
                 <section className="col-span-7 bg-green-200 h-44 w-96 ">
                     <Outlet />
                 </section>
-                <button onClick={() => {
+                <button 
+                className="border rounded-lg border-black"
+                onClick={() => {
                     return navigate(-1)
                 }}>{" "}Back</button>
             </section>

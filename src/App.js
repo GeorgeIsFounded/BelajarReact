@@ -14,6 +14,7 @@ import Asus from "./pages/setting/computer/asus";
 
 
 function App() {
+  let navigate = useNavigate()
   return (
     <React.Fragment>
       <section className="space-x-5 border py-5">
@@ -45,7 +46,6 @@ function App() {
         >
           About
         </NavLink>
-
         <NavLink
           to="/setting"
           className={({ isActive }) =>
@@ -62,6 +62,12 @@ function App() {
         >
           Setting
         </NavLink>
+          <button
+          className="font-sans border rounded-lg border-black w-28 border-solid"
+          onClick={() => {
+            return navigate(-1)
+          }}>{" "}Back
+          </button>
       </section>
       <Routes>
         <Route path="/" element={<Home />} />
