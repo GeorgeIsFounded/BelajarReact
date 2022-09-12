@@ -1,15 +1,15 @@
 import React from "react";
 import axios from "axios";
 
-export default function User() {
+export default function Quran() {
 
-    const [users, setUsers] = React.useState([]) //state untuk menyimpan data user dari API
+    const [quran, setQuran] = React.useState([]) //state untuk menyimpan data user dari API
     const [page, setPage] = React.useState(1)
     const getUserHandle = async () => {
         try {
-            const response = await axios.get(`https://reqres.in/api/users?page=${page}`)
+            const response = await axios.get(`https://equran.id/api/surat`)
             console.log("response => ", response.data);
-            setUsers(response.data.data)
+            setQuran(response.data)
             setPage(response.data.page)
         }
         catch (err) {
@@ -17,7 +17,7 @@ export default function User() {
         }
     };
 
-    console.log("user =>", users)
+    console.log("quran =>", quran)
     console.log("page =>", page)
 
     React.useEffect(() => {
@@ -27,28 +27,28 @@ export default function User() {
     return (
         <div>
             <h1>Tabel User</h1>
-            <button onClick={getUserHandle}>list users</button>
+            <button onClick={getUserHandle}>list quran</button>
             <table className="table-auto">
                 <thead>
-                    <tr>No</tr>
-                    <tr>Email</tr>
-                    <tr>First Name</tr>
-                    <tr>Last Name</tr>
-                    <tr>Avatar</tr>
-                    <tr>Detail</tr>
+                    <tr>nomor</tr>
+                    <tr>nama</tr>
+                    <tr>nama_latin</tr>
+                    <tr>jumlah_ayat</tr>
+                    <tr>tempat_turun</tr>
+                    <tr>arti</tr>
+                    <tr>deskripsi</tr>
                 </thead>
                 <tbody>
-                    {users.map((user, index) => {
+                    {quran.map((quran, index) => {
                         return (
                             <tr key={index} className="text-left border">
                                 <td>{index + 1}</td>
-                                <td>{user.email}</td>
-                                <td>{user.first_name}</td>
-                                <td>{user.last_name}</td>
-                                <td>
-                                    <img className="rounded-full" src={user.avatar} alt={user.avatar} />
-                                </td>
-                                <td>Detail</td>
+                                <td>{quran.nama}</td>
+                                <td>{quran.nama_latin}</td>
+                                <td>{quran.jumlah_ayat}</td>
+                                <td>{quran.tempat_turun}</td>
+                                <td>{quran.arti}</td>
+                                <td></td>
                             </tr>
                         );
                     })}
