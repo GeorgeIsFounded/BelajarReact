@@ -27,7 +27,7 @@ function App() {
       </NavLink>
       <NavLink
         className="border-2 border-solid border-b-black rounded-lg px-5"
-        to="/admin"
+        to="/admin/Dashboard"
         style={({ isActive }) =>
           isActive
             ? {
@@ -38,6 +38,8 @@ function App() {
       >
         Login
       </NavLink>
+      </section>
+      <section>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

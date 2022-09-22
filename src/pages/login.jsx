@@ -8,7 +8,6 @@ export default function Login(){
         <div>
             <h1  className="ml-28">Login Page</h1>
            <div className="">
-            
            </div>
         </div>
     )
