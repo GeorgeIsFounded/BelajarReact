@@ -1,5 +1,60 @@
 .input {
-    background-color: red;
     padding: 5px 10px;
-    border: 1px solid red;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 20px;
+    filter: drop-shadow(10);
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.layout {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: cyan;
+    margin-top: 10px;
+}
+.button {
+    padding: 15px 10px;
+    border: 2px solid black;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-left: 30px;
+    width: 200px;
+    font-weight: bold;
+    background-color: aqua;
+    font-size: 16px;
+}
+.input-text {
+    padding: 5px 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 45%;
+    margin-bottom: 10px;
+    font-weight: thin;
+}
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+p {
+    padding: 5px 10px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 20px;
+    height: 70px;
+    font-weight: bold;
 }

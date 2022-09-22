@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
+import Button from "../komponen/button";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function User() {
+
+    let navigate = useNavigate();
 
     const [users, setUsers] = React.useState([]) //state untuk menyimpan data user dari API
     const [page, setPage] = React.useState(100)
@@ -17,6 +21,7 @@ export default function User() {
         }
     };
 
+
     console.log("user =>", users)
     console.log("page =>", page)
 
@@ -26,16 +31,21 @@ export default function User() {
 
     return (
         <div>
-            <h1>Tabel User</h1>
-            <button className="p-2 bg-blue-500 border-2 border-black " onClick={getUserHandle}>Tambah User</button>
-            <table className="table-auto w-[1000px]">
+            <div>
+                <h1 className="flex justify-center border-2 w-24">Tabel User</h1>
+            </div>
+            <Link className="p-1 bg-red-500 border-2 border-black rounded-xl " to="/user/create">Tambah Link</Link>
+            <table className="table-auto w-[1200px] mt-5">
                 <thead>
-                    <tr>Username</tr>
-                    <tr>Nama</tr>
-                    <tr>Email</tr>
-                    <tr>Jenis Kelamin</tr>
-                    <tr>stored_at</tr>
-                    <tr>updated_at</tr>
+                    <tr>
+                        <th>Username</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Jenis Kelamin</th>
+                        <th>stored_at</th>
+                        <th>updated_at</th>
+                        <th>Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {users.map((user, index) => {
@@ -48,6 +58,12 @@ export default function User() {
                                 <td>{user.jenis_kelamin}</td>
                                 <td>{user.stored_at}</td>
                                 <td>{user.updated_at}</td>
+                                <td className="flex flex-col">
+                                    <Button onClick={() => {
+                                        return navigate(`/user/update/${user.id}`)
+                                    }} color="blue" title={"Edit"} />
+                                    <Button color="red" title={"Delete"} />
+                                </td>
                             </tr>
                         );
                     })}

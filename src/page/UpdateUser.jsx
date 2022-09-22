@@ -4,11 +4,16 @@ import Input from "../komponen/input";
 import axios from "axios";
 import Select from "../komponen/select";
 import UpdateUser from "./UpdateUser";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateUser() {
 
+    let response = useParams();
+
     let navigate = useNavigate();
+
+    // kenapa id karena di routingnya kita kasi nama ID
+    let { id } = useParams();
 
     const [isLoading, setIsLoading] = React.useState(false)
 
@@ -38,9 +43,9 @@ export default function CreateUser() {
 
         try {
             setIsLoading(true);
-            const response = await axios.post("https://belajar-react.smkmadinatulquran.sch.id/api/users/create", users)
-            setIsLoading(false)
-            return navigate('users')
+            // const response = await axios.post("https://belajar-react.smkmadinatulquran.sch.id/api/users/create", users)
+            // setIsLoading(false)
+            // return navigate('users')
         }
         catch (err) {
             setIsLoading(false)
@@ -48,9 +53,35 @@ export default function CreateUser() {
         }
     }
 
+    const getDetailUser = async () => {
+        try {
+            const response = await axios.get(`https://belajar-react.smkmadinatulquran.sch.id/api/users/detail/${id}`)
+            console.log('response =>', response.data)
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+        const dataUser = response.data.data;
+        console.log(dataUser);
+        setUsers(() => {
+            return {
+                username: "dataUser.username",
+                name: "dataUser.name",
+                email: "dataUser.email",
+                jenis_kelamin: "dataUser.jenis_kelamin"
+            }
+        })
+    }
+
+    React.useEffect(() => {
+        
+    }, [])
+
     return (
         <div className="flex justify-center ">
             <form className="border-2 rounded-xl border-black p-6 mt-11">
+                <h1>User page dengan id {id}</h1>
                 <div>
                     <Input
                         onsubmit={handleSubmit}
@@ -76,7 +107,6 @@ export default function CreateUser() {
                         name="email"
                         onChange={handleChange}
                     />
-                    <label htmlFor="jenis_kelamin">Jenis Kelamin</label>
                     <Select
                         value={users.jenis_kelamin}
                         label={"jenis_kelamin"}
@@ -84,18 +114,12 @@ export default function CreateUser() {
                         name="jenis_kelamin"
                         onChange={handleChange}
                     >
-                        <option>Pilih</option>
+                        <option>
+                            Pilih
+                        </option>
                         <option value={"laki-laki"}>laki-laki</option>
                         <option value={"perempuan"}>perempuan</option>
                     </Select>
-                    <Input
-                        onsubmit={handleSubmit}
-                        value={users.password}
-                        placeholder="loeca123"
-                        label={"Password :"}
-                        name="password"
-                        onChange={handleChange}
-                    />
                     <Input
                         onsubmit={handleSubmit}
                         value={users.konfirmasi_password}
@@ -104,12 +128,22 @@ export default function CreateUser() {
                         name="konfirmasi_password"
                         onChange={handleChange}
                     />
-                    <Button
-                        title={isLoading ? "Saving" : "Save"}
-                        onClick={() => {
-                            
-                        }}
-                    />
+                    <div className="flex justify-between">
+                        <Button
+                            title={isLoading ? "Canceling" : "Back"}
+                            // onClick={() => {
+                            //     navigate("/user")
+                            // }}
+                            className="h-5"
+                        />
+                        <Button
+                            title={isLoading ? "Saving" : "Save"}
+                            onClick={() => {
+                                navigate("/user")
+                            }}
+                        />
+                    </div>
+
                 </div>
             </form>
         </div>
