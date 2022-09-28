@@ -1,55 +1,32 @@
-import React from "react";
-import Register from "./pages/register";
-import Home from "./pages/home";
-import Login from "./pages/login";
-import Admin from "./pages/admin";
-import Dashboard from "./pages/admin/dashboard";
-import User from "./pages/admin/user";
-import Kelas from "./pages/admin/kelas";
-import { Routes, Route, Link, NavLink, Navigate } from "react-router-dom";
+import React  from "react";
+import {Routes, Navigate, Route} from 'react-router-dom'
+import UserDetail from './pages/userDetail';
+import NotFound from './pages/NotFound';
+import TambahBuku from './pages/TambahBuku'
+import UpdateUser from './pages/updateUser'
+import Home from './pages/home';
+import Admin from './pages/admin';
+import Dashboard from './pages/admin/dashboard';
+import About from './pages/admin/about';
+import Buku from './pages/admin/buku';
 
 function App() {
-  return <React.Fragment>
-    <section className="flex space-x-5">
-      <NavLink
-        className="border-2 border-solid border-b-black rounded-lg px-5"
-        exact
-        to="/Register"
-        style={({ isActive }) =>
-          isActive
-            ? {
-              color: "blue",
-            }
-            : undefined
-        }
-      >
-        Register
-      </NavLink>
-      <NavLink
-        className="border-2 border-solid border-b-black rounded-lg px-5"
-        to="/admin"
-        style={({ isActive }) =>
-          isActive
-            ? {
-              color: "blue",
-            }
-            : undefined
-        }
-      >
-        Login
-      </NavLink>
+  return(
+    <React.Fragment>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<Admin />} >
-          <Route path="Dashboard" element={<Dashboard />} />
-          <Route path="User" element={<User />} />
-          <Route path="Kelas" element={<Kelas />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Home/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/admin/:id/detail" element={<UserDetail/>}/>
+        <Route path="/admin/tambah/:id" element={<TambahBuku/>}/>
+        <Route path="/admin/update/:id" element={<UpdateUser/>}/>
+        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/admin/dashboard" element={<Dashboard/>}/>
+        <Route path="/admin/buku" element={<Buku/>}/>
+        <Route path="/admin/about" element={<About/>}/>
+        <Route path="404" element={<NotFound replace={true}/>}/>
       </Routes>
-    </section>
-  </React.Fragment>;
+    </React.Fragment>
+  )
 }
 
 export default App;

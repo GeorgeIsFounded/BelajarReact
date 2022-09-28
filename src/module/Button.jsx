@@ -1,7 +1,7 @@
 export default function Button({
   title,
   disabled = false,
-  bg = "green",
+  bg = "red",
   
   ...props
 }) {
@@ -13,7 +13,7 @@ export default function Button({
         backgroundColor  : bg,
         opacity : disabled ? 0.8 : 1
       }}
-      className={`w-full border } text-white py-1 rounded-md`}
+      className={`w-28 mt-1 text-white py-1 rounded-xl`}
     >
       {title}
     </button>

@@ -6,7 +6,7 @@ export default function Login(){
 
     return (
         <div>
-            <h1  className="ml-28">Login Page</h1>
+            <h1 className="ml-28">Login Page</h1>
            <div className="">
             
            </div>

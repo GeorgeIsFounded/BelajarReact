@@ -10,7 +10,7 @@ export default function Input({ title, error = false, ...props }) {
           } border w-full rounded-md px-2 py-1`}
       />
       {error && (
-        <p className="text-red-500 text-sm italic ">Isi Input tidak sesuai</p>
+        <p className="text-red-500 text-sm italic mb-10">Isi Input tidak sesuai</p>
       )}
     </div>
   );

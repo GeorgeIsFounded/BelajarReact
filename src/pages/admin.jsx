@@ -1,30 +1,31 @@
-import { Outlet, Link, navigate, useNavigate, useLocation } from "react-router-dom";
+import React from 'react'
+import Button from '../module/Button'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 export default function Admin() {
-
-  let location = useLocation()
-
   let navigate = useNavigate()
-
+  const handleDashboard = () => {
+    return navigate('/admin/dashboard')
+  }
+  const handleBuku = () => {
+    return navigate('/admin/buku')
+  }
+  const handleAbout = () => {
+    return navigate('/admin/about')
+  }
   return (
-    <div className="grid grid-cols-5 gap-5 w-screen">
-      <div className="col-span-1 ">
-        <nav className="flex flex-col items-start">
-          <Link to="/admin/Dashboard">dashboard</Link>
-          <Link to="/admin/User">user</Link>
-          <Link to="/admin/Kelas">kelas</Link>
-        </nav>
-      </div>
-      <section className="col-span-7 h-44 w-96 ">
+    <React.Fragment>
+      <div className='flex flex-row'>
+        <div className='basis-1/5 flex flex-col'>
+          <Button title={'Dashboard'} onClick={handleDashboard} />
+          <Button title={'Buku'} onClick={handleBuku} />
+          <Button title={'About'} onClick={handleAbout} />
+        </div>
+        <div className='basis-3/4'>
+          <h1 className='text-center'>PAGE ADMIN</h1>
+        </div>
         <Outlet />
-      </section>
-      <div className="col-span-4 ">
-        <button
-          className="border-2 border-solid border-b-black rounded-lg px-5"
-          onClick={() => {
-            return navigate("/home")
-          }}>Log Out</button>
       </div>
-    </div>
-  );
+    </React.Fragment>
+  )
 }
