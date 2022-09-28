@@ -3,16 +3,17 @@ import Button from "../komponen/button";
 import Input from "../komponen/input";
 import axios from "axios";
 import Select from "../komponen/select";
-import UpdateUser from "./UpdateUser";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateUser() {
-
+function CreateUser() {
     let navigate = useNavigate();
+
+    // kenapa id karena di routingnya kita kasi nama ID
+    let { id } = useParams();
 
     const [isLoading, setIsLoading] = React.useState(false)
 
-    const [users, setUsers] = React.useState({
+    const [users, setUser] = React.useState({
         username: "",
         name: "",
         email: "",
@@ -23,7 +24,7 @@ export default function CreateUser() {
 
 
     const handleChange = (e) => {
-        setUsers((users) => {
+        setUser((users) => {
             return {
                 ...users,
                 [e.target.name]: e.target.value
@@ -32,51 +33,69 @@ export default function CreateUser() {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        console.log(users)
-
-
+        e.preventDefault();
+        console.log(users);
         try {
             setIsLoading(true);
-            const response = await axios.post("https://belajar-react.smkmadinatulquran.sch.id/api/users/create", users)
-            setIsLoading(false)
-            return navigate('users')
+            const response = await axios.post(
+                "https://belajar-react.smkmadinatulquran.sch.id/api/users/create",
+                users
+            );
+            setIsLoading(false);
+            alert("Success Creating User")
+            return navigate("/users");
+        } catch (err) {
+            console.log(err);
+            alert("Failed Creating User");
+            setIsLoading(false);
+            setUser({
+                username: "",
+                name: "",
+                email: "",
+                jenis_kelamin: "",
+                password: "",
+                konfirmasi_password: "",
+            });
         }
-        catch (err) {
-            setIsLoading(false)
-            alert('Terjadi Error pada backEnd')
-        }
-    }
+    };
 
     return (
         <div className="flex justify-center ">
-            <form className="border-2 rounded-xl border-black p-6 mt-11">
+            <form
+                onsubmit={handleSubmit}
+                className="border-2 rounded-xl border-black p-6 mt-11">
+                <h1>User page dengan id {id}</h1>
                 <div>
                     <Input
-                        onsubmit={handleSubmit}
+                        onChange={handleChange}
                         value={users.username}
-                        placeholder="username"
-                        label={"Username :"}
+                        isError={""}
+                        label="Username"
+                        type="text"
                         name="username"
-                        onChange={handleChange}
+                        id="username"
+                        placeholder="Username"
                     />
                     <Input
-                        onsubmit={handleSubmit}
+                        onChange={handleChange}
                         value={users.name}
-                        placeholder="name"
-                        label={"Name :"}
+                        isError={""}
+                        label="Name"
+                        type="text"
                         name="name"
-                        onChange={handleChange}
+                        id="name"
+                        placeholder="Name"
                     />
                     <Input
-                        onsubmit={handleSubmit}
-                        value={users.email}
-                        placeholder="ex@gmail.com"
-                        label={"Email :"}
-                        name="email"
                         onChange={handleChange}
+                        value={users.email}
+                        isError={""}
+                        label="Email"
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Username"
                     />
-                    <label htmlFor="jenis_kelamin">Jenis Kelamin</label>
                     <Select
                         value={users.jenis_kelamin}
                         label={"jenis_kelamin"}
@@ -84,34 +103,47 @@ export default function CreateUser() {
                         name="jenis_kelamin"
                         onChange={handleChange}
                     >
-                        <option>Pilih</option>
+                        <option>
+                            Pilih
+                        </option>
                         <option value={"laki-laki"}>laki-laki</option>
                         <option value={"perempuan"}>perempuan</option>
                     </Select>
                     <Input
-                        onsubmit={handleSubmit}
-                        value={users.password}
-                        placeholder="loeca123"
-                        label={"Password :"}
-                        name="password"
                         onChange={handleChange}
+                        value={users.password}
+                        isError={""}
+                        label="Password"
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
                     />
                     <Input
-                        onsubmit={handleSubmit}
                         value={users.konfirmasi_password}
                         placeholder="loeca123"
                         label={"Konfirmasi password :"}
                         name="konfirmasi_password"
+                        type="password"
+                        id="konfirmasiPassword"
                         onChange={handleChange}
                     />
-                    <Button
-                        title={isLoading ? "Saving" : "Save"}
-                        onClick={() => {
-                            
-                        }}
-                    />
+                    <div className="flex justify-between">
+                        <Button
+                            title={isLoading ? "Canceling" : "Back"}
+                            onClick={() => {
+                                navigate("/user")
+                            }}
+                            className="h-5"
+                        />
+                        <Button
+                            title={isLoading ? "Saving" : "Save"}
+                        />
+                    </div>
                 </div>
             </form>
         </div>
     )
 }
+
+export default CreateUser;
