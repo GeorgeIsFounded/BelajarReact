@@ -3,10 +3,11 @@ import Input from "../komponen/input";
 import Button from "../komponen/button";
 import Select from "../komponen/select";
 import axios from "axios";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 function Createuser() {
     const navigate = useNavigate();
+    let { id } = useParams();
     const [isLoading, setIsLoading] = React.useState(false);
     const [users, setUsers] = React.useState({
         username: "",
@@ -53,7 +54,7 @@ function Createuser() {
     };
     return (
         <React.Fragment>
-            <p className="text-center font-bold uppercase mt-10">User Register</p>
+            <p className="text-center font-bold uppercase mt-10">User Page dengan id {id}</p>
             <div className="flex justify-center">
                 <form
                     onSubmit={handleSubmit}

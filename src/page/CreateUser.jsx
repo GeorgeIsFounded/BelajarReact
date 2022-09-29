@@ -9,9 +9,11 @@ function CreateUser() {
     let navigate = useNavigate();
 
     // kenapa id karena di routingnya kita kasi nama ID
-    let { id } = useParams();
+    const [err, setError] = React.useState({})
 
     const [isLoading, setIsLoading] = React.useState(false)
+
+    let [errorMessage, setErrorMessage] = React.useState('');
 
     const [users, setUser] = React.useState({
         username: "",
@@ -20,8 +22,9 @@ function CreateUser() {
         jenis_kelamin: "laki-laki",
         password: "",
         konfirmasi_password: "",
-    });
+    }); 
 
+    
 
     const handleChange = (e) => {
         setUser((users) => {
@@ -41,13 +44,14 @@ function CreateUser() {
                 "https://belajar-react.smkmadinatulquran.sch.id/api/users/create",
                 users
             );
+            setUser(response.data.data);
             setIsLoading(false);
             alert("Success Creating User")
             return navigate("/users");
         } catch (err) {
             console.log(err);
-            alert("Failed Creating User");
             setIsLoading(false);
+            setError (err?.response?.data?.errors );
             setUser({
                 username: "",
                 name: "",
@@ -64,7 +68,8 @@ function CreateUser() {
             <form
                 onsubmit={handleSubmit}
                 className="border-2 rounded-xl border-black p-6 mt-11">
-                <h1>User page dengan id {id}</h1>
+                <h1>Create User</h1>
+                <p className="text-red-500">{errorMessage}</p>
                 <div>
                     <Input
                         onChange={handleChange}

@@ -88,9 +88,7 @@ export default function User() {
                     </tr>
                 </thead>
                 <tbody>
-                    {!isFetchUser ? <tr>
-                        <td colSpan={9}><Skeleton count={3} /></td>
-                    </tr> : users.map((user, index) => {
+                    {users.map((user, index) => {
                         return (
                             <tr key={index} className="text-left border">
                                 <td>{index + 1}</td>
