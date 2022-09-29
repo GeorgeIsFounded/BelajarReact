@@ -16,13 +16,12 @@ export default function TambahBuku() {
         tahun_terbit_buku: Number,
         sinopsis: ""
     });
+
     const handleChange = (e) => {
         setBooks((books) => {
-            return {
-                ...books,
-                [e.target.name]: e.target.value,
-            };
+            return { ...books, [e.target.name]: e.target.value };
         });
+        console.log("tes");
     };
 
     const handleSubmit = async (e) => {
@@ -32,14 +31,16 @@ export default function TambahBuku() {
             setIsLoading(true)
             const response = await axios.post('https://api-react-2.herokuapp.com/api/perpustakaan', books)
             setIsLoading(false)
-            // return navigate('/user')
+            setBooks(response.data.data);
             alert('Berhasil Menyimpan')
+            return navigate('/book')
         } catch (err) {
             console.log(err);
             setIsLoading(false)
             alert('Error!!')
         }
     }
+
     return (
         <div>
             <h1 className="text-center">Tambah Buku</h1>
