@@ -22,12 +22,13 @@ export default function Admin() {
   const [page, setPage] = React.useState(100);
   const getBookHandle = async () => {
     try {
-      const response = await axios.get(`https://api-react-2.herokuapp.com/api/perpustakaan?kode=55555`);
+      const response = await axios.get(`https://api-react-2.herokuapp.com/api/perpustakaan?kode=11111`);
       setBook(response.data.data.data);
       setPage(response.data.page);
       console.log(response.data);
     } catch (err) { }
   };
+
   React.useEffect(() => {
     getBookHandle();
   }, [page]);
@@ -41,7 +42,7 @@ export default function Admin() {
           <Button title={"About"} onClick={handleAbout} />
         </div>
         <div className="basis-3/4 flex flex-col h-1000">
-          <h1 className="text-center">PAGE BUKU</h1>
+          <h1 className="">PAGE BUKU</h1>
           <Button title={'Tambah Buku'} onClick={handleNew} />
           <div className="flex flex-row mt-5">
             {books.map((book, index) => {
