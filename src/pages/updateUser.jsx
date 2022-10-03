@@ -97,7 +97,6 @@ export default function UpdateBuku() {
                     onChange={handleChange}
                 />
                 <Button title={isLoading ? 'Memperbaharui' : 'Perbaharui'} />
-                <Button title={books ? 'Reset' : 'Reseting'} />
                 <Link to={'/admin/buku'} className='pl-5'>
                     <Button title={'Back'} />
                 </Link>
