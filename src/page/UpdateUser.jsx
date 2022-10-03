@@ -30,8 +30,8 @@ function Createuser() {
         console.log(users);
         try {
             setIsLoading(true);
-            const response = await axios.post(
-                "https://belajar-react.smkmadinatulquran.sch.id/api/users/create",
+            const response = await axios.put(
+                `https://belajar-react.smkmadinatulquran.sch.id/api/users/update/${id}`,
                 users
             );
             setUsers(response.data)
@@ -47,11 +47,31 @@ function Createuser() {
                 email: "",
                 name: "",
                 jenis_kelamin: "",
-                password: "",
-                password_confirmation: "",
             });
         }
     };
+
+    const DetailUser = async () => {
+        try {
+            const response = await DetailUser(id)
+            console.log('response => ', response.data);
+            const dataUser = response.data.data
+            setUsers(() => {
+                return {
+                    username: dataUser.username,
+                    email: dataUser.email,
+                    name: dataUser.name,
+                    jenis_kelamin: dataUser.jenis_kelamin,
+                }
+            })
+        } catch (error) {
+
+        }
+    }
+    React.useEffect(() => {
+        DetailUser(id)
+    }, []);
+
     return (
         <React.Fragment>
             <p className="text-center font-bold uppercase mt-10">User Page dengan id {id}</p>
@@ -109,31 +129,6 @@ function Createuser() {
                             <option value={"perempuan"}>perempuan</option>
                         </Select>
                     </div>
-                    <div>
-                        <Input
-                            onChange={handleChange}
-                            value={users.password}
-                            isError={""}
-                            label="Password"
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="Password"
-                        />
-                    </div>
-                    <div>
-                        <Input
-                            onChange={handleChange}
-                            value={users.password_confirmation}
-                            isError={""}
-                            label="Confirm Password"
-                            type="password"
-                            name="password_confirmation"
-                            id="confirmPassword"
-                            placeholder="Confirm Password"
-                        />
-                    </div>
-
                     <div className="flex flex-row justify-between">
                         <NavLink to="/user" className={`border border-black p-2 px-5`}>
                             Cancel

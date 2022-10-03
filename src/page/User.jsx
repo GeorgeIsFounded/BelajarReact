@@ -2,8 +2,9 @@ import React from "react";
 import axios from "axios";
 import Button from "../komponen/button";
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import Cookies from "js-cookie";
 
 export default function User() {
 
@@ -74,7 +75,18 @@ export default function User() {
             <div>
                 <h1 className="flex justify-center border-2 w-24">Tabel User</h1>
             </div>
-            <Link className="p-1 bg-red-500 border-2 border-black rounded-xl " to="/user/create">Tambah Link</Link>
+            <NavLink
+                to={"/user/create"}
+                className={`border border-black p-2 px-6 hover:bg-red-500 hover:text-black`}
+                title="Tambah User"
+            >Tambah</NavLink>
+            <Button
+                title={"log Out"}
+                onClick={() => {
+                    Cookies.remove("myapps_token");
+                    return navigate("/login", { replace: true })
+                }}
+            />
             <table className="table-auto w-[1200px] mt-5">
                 <thead>
                     <tr>

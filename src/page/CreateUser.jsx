@@ -22,9 +22,9 @@ function CreateUser() {
         jenis_kelamin: "laki-laki",
         password: "",
         konfirmasi_password: "",
-    }); 
+    });
 
-    
+
 
     const handleChange = (e) => {
         setUser((users) => {
@@ -44,14 +44,13 @@ function CreateUser() {
                 "https://belajar-react.smkmadinatulquran.sch.id/api/users/create",
                 users
             );
-            setUser(response.data.data);
             setIsLoading(false);
             alert("Success Creating User")
             return navigate("/users");
         } catch (err) {
             console.log(err);
             setIsLoading(false);
-            setError (err?.response?.data?.errors );
+            setError(err?.response?.data?.errors);
             setUser({
                 username: "",
                 name: "",
@@ -109,7 +108,7 @@ function CreateUser() {
                         onChange={handleChange}
                     >
                         <option>
-                            Pilih
+                            pilih
                         </option>
                         <option value={"laki-laki"}>laki-laki</option>
                         <option value={"perempuan"}>perempuan</option>
