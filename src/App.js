@@ -4,17 +4,24 @@ import User from "./page/User";
 import UpdateUser from "./page/UpdateUser";
 import CreateUser from "./page/CreateUser";
 import {Routes, Route, Navigate} from "react-router-dom";
-import ProtectedRoute from "./routers/protectRoute";
+import ProtectedRoute from "./routers/protectedRoute";
 import Login from "./page/auth/login";
+import Artikel from "./page/artikel";
+import CreateArtikel from "./page/CreateArtikel";
+import UpdateArtikel from "./page/UpdateArtikel";
+import DetailArtikel from "./page/DetailArtikel"
 
 function App() {
   return  (
     <React.Fragment>
-      <h1 className="bg-red-500">Belajar API</h1>
+      <h1 className="bg-red-500 text-center">BELAJAR API</h1>
       <Routes>
         <Route path="/login" element={<Login/>}/>
+        <Route path='/artikel' element={<ProtectedRoute><Artikel /></ProtectedRoute>} />
         <Route path='/user' element={<ProtectedRoute><User /></ProtectedRoute>} />
-        <Route path='/user/:id/detail' element={<ProtectedRoute><DetailUser /></ProtectedRoute>} />
+        <Route path='/artikel/create' element={<ProtectedRoute><CreateArtikel /></ProtectedRoute>} />
+        <Route path='/artikel/update/:slug' element={<ProtectedRoute><UpdateArtikel /></ProtectedRoute>} />
+        <Route path='/artikel/detailArtikel/:slug' element={<ProtectedRoute><DetailArtikel /></ProtectedRoute>} />
         <Route path='/user/create' element={<ProtectedRoute><CreateUser /></ProtectedRoute>} />
         <Route path='/user/update/:id' element={<ProtectedRoute><UpdateUser/></ProtectedRoute>} />
         <Route path='*' element={<Navigate to="/user" replace={true}/>} />

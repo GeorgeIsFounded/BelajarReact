@@ -73,13 +73,19 @@ export default function User() {
     return (
         <div>
             <div>
-                <h1 className="flex justify-center border-2 w-24">Tabel User</h1>
+                <h1 className="text-center border-2 w-36">Tabel User</h1>
             </div>
             <NavLink
                 to={"/user/create"}
                 className={`border border-black p-2 px-6 hover:bg-red-500 hover:text-black`}
                 title="Tambah User"
             >Tambah</NavLink>
+            <Button
+                title={"Artikel"}
+                onClick={() => {
+                    return navigate("/artikel", { replace: true })
+                }}
+            />
             <Button
                 title={"log Out"}
                 onClick={() => {

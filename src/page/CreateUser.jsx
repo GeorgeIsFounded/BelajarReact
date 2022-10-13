@@ -4,8 +4,9 @@ import Input from "../komponen/input";
 import axios from "axios";
 import Select from "../komponen/select";
 import { useNavigate, useParams } from "react-router-dom";
+import { createUser } from "../api/user";
 
-function CreateUser() {
+export default function CreateUser() {
     let navigate = useNavigate();
 
     // kenapa id karena di routingnya kita kasi nama ID
@@ -15,43 +16,35 @@ function CreateUser() {
 
     let [errorMessage, setErrorMessage] = React.useState('');
 
-    const [users, setUser] = React.useState({
+    const [payload, setPayload] = React.useState({
         username: "",
         name: "",
         email: "",
-        jenis_kelamin: "laki-laki",
+        jenis_kelamin: "",
         password: "",
         konfirmasi_password: "",
     });
 
-
-
     const handleChange = (e) => {
-        setUser((users) => {
+        setPayload((payload) => {
             return {
-                ...users,
+                ...payload,
                 [e.target.name]: e.target.value
             }
         })
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(users);
         try {
-            setIsLoading(true);
-            const response = await axios.post(
-                "https://belajar-react.smkmadinatulquran.sch.id/api/users/create",
-                users
-            );
-            setIsLoading(false);
+            e.preventDefault();
+            await createUser(payload);
             alert("Success Creating User")
-            return navigate("/users");
+            return navigate("/users", {replace : true});
         } catch (err) {
             console.log(err);
             setIsLoading(false);
             setError(err?.response?.data?.errors);
-            setUser({
+            setPayload({
                 username: "",
                 name: "",
                 email: "",
@@ -67,12 +60,11 @@ function CreateUser() {
             <form
                 onsubmit={handleSubmit}
                 className="border-2 rounded-xl border-black p-6 mt-11">
-                <h1>Create User</h1>
-                <p className="text-red-500">{errorMessage}</p>
+                <h1 className="text-center mb-11">Create User</h1>
                 <div>
                     <Input
                         onChange={handleChange}
-                        value={users.username}
+                        value={payload.username}
                         isError={""}
                         label="Username"
                         type="text"
@@ -82,7 +74,7 @@ function CreateUser() {
                     />
                     <Input
                         onChange={handleChange}
-                        value={users.name}
+                        value={payload.name}
                         isError={""}
                         label="Name"
                         type="text"
@@ -92,7 +84,7 @@ function CreateUser() {
                     />
                     <Input
                         onChange={handleChange}
-                        value={users.email}
+                        value={payload.email}
                         isError={""}
                         label="Email"
                         type="email"
@@ -101,7 +93,7 @@ function CreateUser() {
                         placeholder="Username"
                     />
                     <Select
-                        value={users.jenis_kelamin}
+                        value={payload.jenis_kelamin}
                         label={"jenis_kelamin"}
                         placeholder="jenis kelamin"
                         name="jenis_kelamin"
@@ -115,7 +107,7 @@ function CreateUser() {
                     </Select>
                     <Input
                         onChange={handleChange}
-                        value={users.password}
+                        value={payload.password}
                         isError={""}
                         label="Password"
                         type="password"
@@ -124,7 +116,7 @@ function CreateUser() {
                         placeholder="Password"
                     />
                     <Input
-                        value={users.konfirmasi_password}
+                        value={payload.konfirmasi_password}
                         placeholder="loeca123"
                         label={"Konfirmasi password :"}
                         name="konfirmasi_password"
@@ -149,5 +141,3 @@ function CreateUser() {
         </div>
     )
 }
-
-export default CreateUser;
