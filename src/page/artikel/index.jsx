@@ -103,7 +103,7 @@ export default function Artikel() {
                                             color="red"
                                             title="Delete"
                                         />
-                                        <Button
+                                        {/* <Button
                                             onClick={
                                                 async () => {
                                                     console.log("delete jalan");
@@ -155,7 +155,7 @@ export default function Artikel() {
                                             }
                                             color="white"
                                             title="View"
-                                        />
+                                        /> */}
                                     </td>
                                 </tr>
                             );
