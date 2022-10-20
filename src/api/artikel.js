@@ -15,18 +15,18 @@ export async function createArtikel(payload) {
     return axios.post("/artikel", formData)
 }
 
-export async function updateArtikel(slug) {
-    console.log("payload akan dikirim", slug)
+export async function updateArtikel(payload) {
+    console.log("payload akan dikirim", payload)
 
     const formData = new FormData()
-    formData.append('judul', slug.judul)
-    formData.append('artikel', slug.artikel)
-    formData.append('thumbnail', slug.thumbnail)
+    formData.append('judul', payload.judul)
+    formData.append('artikel', payload.artikel)
+    formData.append('thumbnail', payload.thumbnail)
 
-    return axios.post(`/artikel/update/${slug}`, formData)
+    return axios.post(`/artikel/update/${payload.id}`, formData)
 }
 
-export async function detailArtikel(slug) {
+export async function editArtikel(slug) {
     return axios.get(`/artikel/${slug}`)
 }
 

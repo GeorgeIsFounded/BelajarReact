@@ -91,7 +91,7 @@ export default function Artikel() {
                                     <td className="flex flex-col">
                                         <Button
                                             onClick={() => {
-                                                return navigate(`/artikel/update/${artikel.id}`)
+                                                return navigate(`/artikel/edit/${artikel.slug}`)
                                             }}
                                             color="white"
                                             title="Edit"

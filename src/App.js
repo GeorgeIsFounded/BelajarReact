@@ -6,10 +6,11 @@ import CreateUser from "./page/CreateUser";
 import {Routes, Route, Navigate} from "react-router-dom";
 import ProtectedRoute from "./routers/protectedRoute";
 import Login from "./page/auth/login";
+
 import Artikel from "./page/artikel";
 import CreateArtikel from "./page/CreateArtikel";
-import UpdateArtikel from "./page/UpdateArtikel";
-import DetailArtikel from "./page/DetailArtikel"
+import EditArtikel from "./page/EditArtikel";
+import DetailArtikel from "./page/EditArtikel"
 
 function App() {
   return  (
@@ -20,7 +21,7 @@ function App() {
         <Route path='/artikel' element={<ProtectedRoute><Artikel /></ProtectedRoute>} />
         <Route path='/user' element={<ProtectedRoute><User /></ProtectedRoute>} />
         <Route path='/artikel/create' element={<ProtectedRoute><CreateArtikel /></ProtectedRoute>} />
-        <Route path='/artikel/update/:slug' element={<ProtectedRoute><UpdateArtikel /></ProtectedRoute>} />
+        <Route path='/artikel/edit/:slug' element={<ProtectedRoute><EditArtikel /></ProtectedRoute>} />
         <Route path='/artikel/detailArtikel/:slug' element={<ProtectedRoute><DetailArtikel /></ProtectedRoute>} />
         <Route path='/user/create' element={<ProtectedRoute><CreateUser /></ProtectedRoute>} />
         <Route path='/user/update/:id' element={<ProtectedRoute><UpdateUser/></ProtectedRoute>} />
