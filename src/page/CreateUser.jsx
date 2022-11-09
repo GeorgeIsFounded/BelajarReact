@@ -58,7 +58,7 @@ export default function CreateUser() {
     return (
         <div className="flex justify-center ">
             <form
-                onsubmit={handleSubmit}
+                onSubmit={handleSubmit}
                 className="border-2 rounded-xl border-black p-6 mt-11">
                 <h1 className="text-center mb-11">Create User</h1>
                 <div>

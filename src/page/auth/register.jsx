@@ -3,20 +3,24 @@ import Input from "../../komponen/input"
 import { Navigate, useNavigate } from "react-router-dom"
 import Button from "../../komponen/button"
 import React from "react"
-import { logInProgress } from "../../api/auth"
 import { useDispatch } from "react-redux"
-import { authLogin } from "../../redux/action/authAction"
+import { authRegister } from "../../redux/action/authAction"
 
-export default function Login() {
+export default function Register() {
 
     let dispatch = useDispatch();
 
+    const [errorName, setErrorName] = React.useState();
+    const [errorEmail, setErrorEmail] = React.useState();
+    const [errorPassword, setErrorPassword] = React.useState();
+    const [errorConfirmPassword, setErrorConfirmPassword] = React.useState();
     const [messageError, setMessageError] = React.useState()
 
     const [payload, setPayload] = React.useState({
         name: "",
         email: "",
         password: "",
+        password_confirmation: "",
     });
 
     const handleChange = (e) => {
@@ -32,13 +36,15 @@ export default function Login() {
         e.preventDefault();
         try {
             setIsLoading(true)
-            const response = await dispatch(authLogin(payload));
+            const response = await dispatch(authRegister(payload));
             console.log('response', response)
-
             if (response?.status === "Success") {
                 return navigate("/user", { replace: true })
             } else {
-                setMessageError(response?.response?.data?.message)
+                // setErrorName(response?.response?.data?.errors?.name),
+                // setErrorEmail(response?.response?.data?.errors?.email),
+                // setErrorPassword(response?.response?.data?.errors?.password),
+                // setErrorConfirmPassword(response?.response?.data?.errors?.password_confirmation)
             }
             // return navigate ("/user" , {replace : true});
         } catch (err) {
@@ -57,7 +63,17 @@ export default function Login() {
             onSubmit={handleSubmit}
             className="p-11 mt-11 flex justify-center">
             <div className="border-2 p-12 border-black rounded-xl bg-slate-300">
-                <h1 className="text-center">Login</h1>
+                <p className="text-red-500">{messageError}</p>
+                <h1 className="text-center">Register</h1>
+                <p className="text-red-500 font-thin">{errorName}</p>
+                <Input
+                    onChange={handleChange}
+                    placeholder="name"
+                    type="text"
+                    name="name"
+                    label="Name"
+                />
+                <p className="text-red-500 font-thin">{errorEmail}</p>
                 <Input
                     onChange={handleChange}
                     placeholder="email"
@@ -65,6 +81,7 @@ export default function Login() {
                     name="email"
                     label="Email"
                 />
+                <p className="text-red-500 font-thin">{errorPassword}</p>
                 <Input
                     onChange={handleChange}
                     type="password"
@@ -72,17 +89,25 @@ export default function Login() {
                     name="password"
                     label="Password"
                 />
+                <p className="text-red-500 font-thin">{errorConfirmPassword}</p>
+                <Input
+                    onChange={handleChange}
+                    type="password"
+                    placeholder="Password_confirmation"
+                    name="password_confirmation"
+                    label="Password Confirmation"
+                />
                 <div className="flex justify-between">
                     <Button
-                        color="black"
-                        title={isLoading ? 'o o o' : 'login'}
-                    />
-                    <Button
                         onClick={() => {
-                            navigate("/register", { replace: true });
+                            navigate("/login", { replace: true });
                         }}
                         color="black"
-                        title={'Register'}
+                        title={'Go Back'}
+                    />
+                    <Button
+                        color="black"
+                        title={isLoading ? 'o o o' : 'Register'}
                     />
                 </div>
             </div>

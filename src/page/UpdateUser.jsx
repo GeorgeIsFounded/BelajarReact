@@ -36,11 +36,11 @@ function Createuser() {
             );
             setUsers(response.data)
             setIsLoading(false);
-            alert("Success Creating User")
+            alert("Success Updating User")
             return navigate("/users");
         } catch (err) {
             console.log(err);
-            alert("Failed Creating User");
+            alert("Failed Updating User");
             setIsLoading(false);
             setUsers({
                 username: "",

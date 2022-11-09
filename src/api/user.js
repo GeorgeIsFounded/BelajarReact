@@ -5,7 +5,7 @@ export async function getAllUser(pageSize = 10) {
 }
 
 export async function createUser(payload) {
-    return axios.post("/users/create", payload);
+    return axios.post(`/users/create`, payload);
 }
 
 export async function updateUser(id, payload) {
