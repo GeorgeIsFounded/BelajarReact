@@ -1,9 +1,10 @@
 import React from "react";
+import Login from "./pages/login";
 
 function App() {
   return  (
     <React.Fragment>
-      <h1>Hello</h1>
+      <Login />
     </React.Fragment>
   );
 }
