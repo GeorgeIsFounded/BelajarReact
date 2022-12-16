@@ -12,5 +12,33 @@ export async function GetProduk(
 }
 
 export async function GetDetailProduct(uuid) {
-  return axios.get(`http://34.128.70.114/produk/detail/${uuid}`);
+  return axios.get(`https://sainuu.xyz/produk/detail/${uuid}`);
+}
+
+export async function GetKategori() {
+  return axios.get(`https://sainuu.xyz/kategori`);
+}
+
+export async function GetKeranjang() {
+  return axios.get(`https://sainuu.xyz/keranjang`);
+}
+
+export async function GetTambahKeranjang(load) {
+  return axios.post(`https://sainuu.xyz/keranjang/tambah`, load);
+}
+
+export async function GetTambahItem(jumlah) {
+  return axios.post(`https://sainuu.xyz/keranjang/ubah-jumlah-item`, jumlah);
+}
+
+export async function DeleteHapusKeranjang(id) {
+  return axios.delete(`https://sainuu.xyz/keranjang/hapus/${id}`);
+}
+
+export async function GetHistory() {
+  return axios.get(`https://sainuu.xyz/beli/history`);
+}
+
+export async function GetBeli(payload) {
+  return axios.post(`https://sainuu.xyz/beli/tambah`, payload);
 }

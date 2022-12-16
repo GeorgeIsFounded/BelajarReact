@@ -64,7 +64,7 @@ const ForgotPassword = () => {
 
         Toast.fire({
           icon: 'error',
-          title: 'Check again',
+          title: 'Error',
         });
       }
       if (response?.response?.data === 'Error') {
@@ -121,7 +121,7 @@ const ForgotPassword = () => {
               <button
                 className="bg-black w-72 h-16 mt-12 text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
               >
-                Submit
+                {isLoading ? <div className='animate-spin text-xl'>+</div> : "Submit"}
               </button>
             </div>
           </form>

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { authLogin } from '../redux/action/authAction';
+import '../../styles/styles.css';
 
 const Login = () => {
   const Swal = require('sweetalert2');
@@ -41,15 +42,15 @@ const Login = () => {
           timer: 3000,
           timerProgressBar: true,
           didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          },
+        });
+
         Toast.fire({
           icon: 'success',
-          title: 'Signed in successfully'
-        })
+          title: 'Signed in successfully',
+        });
         return navigate('/dashboard', { replace: true });
       } else {
         const Toast = Swal.mixin({
@@ -140,7 +141,7 @@ const Login = () => {
                   onClick={() => {
                     return navigate('/register');
                   }}
-                  className="fonst-small text-md text-black hover:underline"
+                  className="hover:underline"
                 >
                   Sign Up
                 </button>
@@ -178,11 +179,11 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="w-72">
-                  <button
-                    onClick={() => {}}
-                    className="bg-black w-72 h-16 mt-40 text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
-                  >
-                    Sign In
+                  <button className="fancy" href="/">
+                    <span className="top-key" />
+                    <span className="text">Sign In</span>
+                    <span className="bottom-key-1" />
+                    <span className="bottom-key-2" />
                   </button>
                   <p className="text-gray-400 text-sm mt-2">
                     Welcome back! Hope you will always have a good day

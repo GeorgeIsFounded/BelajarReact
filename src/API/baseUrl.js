@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const login = axios.create({
-  baseURL: 'http://34.128.70.114',
+  baseURL: 'https://sainuu.xyz',
   headers: {
     Accept: 'application/json',
     Autorization: `${Cookies.get('myapps_token')}`,
