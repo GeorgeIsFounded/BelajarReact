@@ -75,6 +75,9 @@ const History = () => {
           </div>
         ) : (
           listHistory.map((item, index) => {
+            const convertRupiah = require('rupiah-format');
+            let number = item.produk.harga;
+            let rupiah = convertRupiah.convert(number);
             const json = item?.produk.gambarProduk;
             const obj = JSON.parse(json);
             return (
@@ -97,8 +100,8 @@ const History = () => {
                     </div>
                   </div>
                 </div>
-                <div className="space-y-24">
-                  <p className="text-2xl">Rp.{item.produk.harga}</p>
+                <div className="space-y-24 w-64">
+                  <p className="text-2xl">{rupiah}</p>
                 </div>
               </div>
             );

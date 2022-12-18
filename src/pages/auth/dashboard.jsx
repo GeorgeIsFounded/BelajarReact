@@ -13,8 +13,7 @@ import InputHarga from '../../module/inputharga';
 import { BsClockHistory } from 'react-icons/bs';
 
 const Dashboard = () => {
-  const author = useSelector((state) => state.auth);
-
+  const author = useSelector((state) => state.authProcess);
   const [listProduct, setListProduct] = React.useState([]);
   const [payload, setPayload] = React.useState({
     kategori: '',
@@ -76,12 +75,17 @@ const Dashboard = () => {
           />
           <FaSearch className="text-xl" />
         </div>
-        <div className="flex items-center w-48 justify-between ">
+        <div className="flex items-center justify-between ">
+          <div className='mr-5'>
+            <p>{author.email}</p>
+            <p>{author.name}</p>
+          </div>
+          <div className='bg-black w-1 h-8'></div>
           <button
             onClick={() => {
               return navigate('/keranjang', { replace: true });
             }}
-            className="hover:scale-105 duration-150 hover:shadow-lg rounded-full p-2"
+            className="ml-9 hover:scale-105 duration-150 hover:shadow-lg rounded-full p-2"
           >
             <IoCartOutline size={25} />
           </button>
@@ -89,7 +93,7 @@ const Dashboard = () => {
             onClick={() => {
               return navigate('/history', { replace: true });
             }}
-            className="mr-3 hover:scale-105 duration-150 hover:shadow-lg rounded-full p-2"
+            className="mr-10 hover:scale-105 duration-150 hover:shadow-lg rounded-full p-2"
           >
             <BsClockHistory size={20} />
           </button>
@@ -129,19 +133,9 @@ const Dashboard = () => {
                       }}
                     >
                       <div className="flex justify-center w-[292px]">
-                        <div className="snap-x overflow-x-scroll snap-mandatory h-[230px] border-b border-black w-[400px] flex items-center">
+                        <div className="snap-x snap-mandatory h-[230px] border-b border-black w-[400px] flex items-center">
                           <img
                             src={ko[0].gambar1}
-                            alt=""
-                            className="h-full w-[500px] rounded-xl duration-150 snap-always snap-center"
-                          />
-                          <img
-                            src={ko[1].gambar2}
-                            alt=""
-                            className="h-full w-[500px] rounded-xl duration-150 snap-always snap-center"
-                          />
-                          <img
-                            src={ko[2].gambar3}
                             alt=""
                             className="h-full w-[500px] rounded-xl duration-150 snap-always snap-center"
                           />

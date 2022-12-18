@@ -107,7 +107,6 @@ const DetailProduk = () => {
     try {
       const response = await dispatch(actionBeli(payloadBeli));
       console.log('responseBeli =>', response);
-
       if (
         response.data.status === 'Berhasil menambah 1 data dan gagal 0 data'
       ) {
@@ -147,11 +146,12 @@ const DetailProduk = () => {
           <h1 className="font-bold">BOGHE'</h1>
         </div>
         <div className="flex items-center w-48 justify-between">
-          <button 
-          onClick={() => {
-            return navigate("/keranjang")
-          }}
-          className="hover:scale-105 duration-150 hover:shadow-lg rounded-full p-2">
+          <button
+            onClick={() => {
+              return navigate('/keranjang');
+            }}
+            className="hover:scale-105 duration-150 hover:shadow-lg rounded-full p-2"
+          >
             <IoCartOutline size={25} />
           </button>
           <div className="border-black rounded-full h-[72px] w-[72px] border">
@@ -197,12 +197,13 @@ const DetailProduk = () => {
             </p>
             <p className="text-lg">Harga : {rupiah}</p>
             <div>
-              <button 
-              onClick={beliHandle}
-              className="w-48 h-14 bg-black text-white rounded-tl-2xl duration-150">
+              <button
+                onClick={beliHandle}
+                className="w-48 h-14 bg-black text-white rounded-tl-2xl duration-150"
+              >
                 <p>Beli</p>
               </button>
-              <button
+              <button 
                 onClick={handleKeranjang}
                 className="w-48 h-14 border border-black rounded-tr-2xl duration-150"
               >

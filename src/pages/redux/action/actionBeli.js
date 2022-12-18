@@ -1,12 +1,12 @@
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
-import { GetBeli } from '../../../API/produk'; 
+import { PostBeli } from '../../../API/produk'; 
 
 export function actionBeli(payload) {
     return async (dispatch) => {
         try {
-            let response = await GetBeli(payload)
+            let response = await PostBeli(payload)
             let data = response
             console.log("ActionBeli =>", data.data)
             return data

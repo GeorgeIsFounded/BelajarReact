@@ -27,8 +27,8 @@ export async function GetTambahKeranjang(load) {
   return axios.post(`https://sainuu.xyz/keranjang/tambah`, load);
 }
 
-export async function GetTambahItem(jumlah) {
-  return axios.post(`https://sainuu.xyz/keranjang/ubah-jumlah-item`, jumlah);
+export async function PutTambahItem(id, jumlah) {
+  return axios.put(`https://sainuu.xyz/keranjang/ubah-jumlah-item`, id, jumlah);
 }
 
 export async function DeleteHapusKeranjang(id) {
@@ -39,6 +39,6 @@ export async function GetHistory() {
   return axios.get(`https://sainuu.xyz/beli/history`);
 }
 
-export async function GetBeli(payload) {
+export async function PostBeli(payload) {
   return axios.post(`https://sainuu.xyz/beli/tambah`, payload);
 }
