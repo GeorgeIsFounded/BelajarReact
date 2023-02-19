@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 function App() {
-  return  (
+  return (
     <React.Fragment>
-      <h1>Hello</h1>
+      <h1 className="text-black">omasga</h1>
     </React.Fragment>
   );
 }
