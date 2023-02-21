@@ -39,9 +39,9 @@ const ForgotPassword = () => {
             </button>
             <button
               onClick={() => {}}
-              className="bg-black w-72 h-16  text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
+              className="bg-black w-72 h-16 text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
             >
-              <div className='flex items-center justify-center'>Send <MdSend  className='ml-2'/></div> 
+              <div className='flex items-center justify-center'>Send <MdSend className='ml-2 hover:translate-x-3 duration-150'/></div> 
             </button>
           </div>
         </div>

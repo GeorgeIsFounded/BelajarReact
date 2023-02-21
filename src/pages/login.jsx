@@ -37,7 +37,7 @@ const Login = () => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+                navigate('/dashboard')
                 setSubmitting(false);
               }, 400);
             }}
@@ -50,32 +50,41 @@ const Login = () => {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form
                 onSubmit={handleSubmit}
                 className="pt-20 h-[270px] space-y-5"
               >
                 <div className="flex items-center space-x-[160px] w-[600px]">
-                  <Input
-                  value={values.email}
-                    type="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    label={'Email'}
-                    name="email"
-                  />
+                  <div>
+                    <Input
+                      value={values.email}
+                      type="email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      label={'Email'}
+                      name="email"
+                    />
+                    <h1 className="text-red-500">
+                      {errors.email && touched.email && errors.email}
+                    </h1>
+                  </div>
                   <div className="h-2 bg-black w-[30px] rounded-xl"></div>
                 </div>
                 <div className="flex items-center space-x-[160px] w-[600px]">
-                  <Input
-                  value={values.password}
-                    type="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    label={'Password'}
-                    name="password"
-                  />
+                  <div>
+                    <Input
+                      value={values.password}
+                      type="password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      label={'Password'}
+                      name="password"
+                    />
+                    <h1 className="text-red-500">
+                      {errors.password && touched.password && errors.password}
+                    </h1>
+                  </div>
                   <div className="h-2 bg-black w-[30px] rounded-xl"></div>
                 </div>
                 <div className="flex justify-end">
@@ -88,23 +97,23 @@ const Login = () => {
                     Forgot Password?
                   </button>
                 </div>
-              </form>
-            )}
-          </Formik>
-
-          <div className="flex mt-20 items-center space-x-24">
-            <button
-              onClick={() => {}}
-              className="bg-black w-72 h-16  text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
-            >
-              Sign In
-            </button>
-            {/* <GiWashingMachine
+                <div className="flex mt-20 items-center space-x-24">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-black w-72 h-16  text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
+                  >
+                    Sign In
+                  </button>
+                  {/* <GiWashingMachine
               size={60}
               className="p-0 hover:h-[65px] hover:w-[65px] duration-150"
             /> */}
-          </div>
-          <div className="flex justify-center mt-24">
+                </div>
+              </form>
+            )}
+          </Formik>
+          <div className="flex justify-center mt-60">
             Don't have anny account yet?{' '}
             <button
               className="hover:border-b-2 hover:border-black duration-100"
