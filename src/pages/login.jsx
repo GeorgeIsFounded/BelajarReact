@@ -4,13 +4,13 @@ import Laundry from '../images/laundry.jpeg';
 import Laundry2 from '../images/laundry.jpg';
 import Laundry3 from '../images/clothe1.jpg';
 import Laundry4 from '../images/clothe2.jpg';
-import { GiWashingMachine } from 'react-icons/gi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -33,11 +33,29 @@ const Login = () => {
               ) {
                 errors.email = 'Invalid email address';
               }
+              if (!values.password) {
+                errors.password = 'Required';
+              }
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
-                navigate('/dashboard')
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                  },
+                });
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Registered successfully',
+                });
+                navigate('/dashboard');
                 setSubmitting(false);
               }, 400);
             }}

@@ -4,15 +4,21 @@ import Laundry from '../images/laundry.jpeg';
 import Laundry2 from '../images/laundry.jpg';
 import Laundry3 from '../images/clothe1.jpg';
 import Laundry4 from '../images/clothe2.jpg';
-import { GiWashingMachine } from 'react-icons/gi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
+import Swal from 'sweetalert2';
+import * as Yup from 'yup';
 
 const Register = () => {
+  const SignupSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(8, 'Password must have 8 lenght')
+      .required('Required'),
+  });
   let navigate = useNavigate();
   return (
     <div className="p-10">
@@ -23,7 +29,8 @@ const Register = () => {
             <div className="h-2 bg-black w-[50px] rounded-xl"></div>
           </div>
           <Formik
-            initialValues={{ email: '', password: '' }}
+            validationSchema={SignupSchema}
+            initialValues={{ email: '', password: '', jenisKelamin: '...' }}
             validate={(values) => {
               const errors = {};
               if (!values.email) {
@@ -33,11 +40,32 @@ const Register = () => {
               ) {
                 errors.email = 'Invalid email address';
               }
+              if (!values.jenisKelamin) {
+                errors.jenisKelamin = 'Required';
+              }
+              if (!values.password) {
+                errors.password = 'Required';
+              }
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                  },
+                });
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Registered successfully',
+                });
+                navigate('/dashboard');
                 setSubmitting(false);
               }, 400);
             }}
@@ -54,7 +82,7 @@ const Register = () => {
             }) => (
               <form
                 onSubmit={handleSubmit}
-                className="pt-20 h-[270px] space-y-5"
+                className="pt-16 h-[270px] space-y-5"
               >
                 <div className="flex items-center space-x-[160px] w-[600px]">
                   <div>
@@ -73,15 +101,20 @@ const Register = () => {
                   <div className="h-2 bg-black w-[30px] rounded-xl"></div>
                 </div>
                 <div className="flex items-center space-x-[160px] w-[600px]">
-                  <div>
-                    <Input
-                      value={values.name}
-                      type="name"
+                  <div className="border-b-2 border-black space-y-3">
+                    <h1>Jenis Kelamin</h1>
+                    <select
+                      className="w-[270px] hover:border-l-2 hover:border-r-2 hover:border-t-2 hover:border-black"
+                      value={values.jenisKelamin}
+                      type="jenisKelamin"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      label={'Name'}
-                      name="name"
-                    />
+                      name="jenisKelamin"
+                    >
+                      <option value="...">...</option>
+                      <option value="laki-laki">laki-laki</option>
+                      <option value="perempuan">perempuan</option>
+                    </select>
                   </div>
                   <div className="h-2 bg-black w-[30px] rounded-xl"></div>
                 </div>
@@ -101,27 +134,28 @@ const Register = () => {
                   </div>
                   <div className="h-2 bg-black w-[30px] rounded-xl"></div>
                 </div>
-              </form>
-            )}
-          </Formik>
-          <div className="flex mt-28 items-center space-x-24">
-            <button
-              onClick={() => {}}
-              className="bg-black w-72 h-16  text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
-            >
-              Sign Up
-            </button>
-            {/* <GiWashingMachine
+                <div className="flex mt-28 items-center space-x-24">
+                  <button
+                    onClick={() => {}}
+                    className="bg-black w-72 h-16  text-white hover:border-black hover:border-2 hover:text-black hover:bg-white hover:scale-120 duration-150"
+                  >
+                    Sign Up
+                  </button>
+                  {/* <GiWashingMachine
               size={60}
               className="p-0 hover:h-[65px] hover:w-[65px] duration-150"
             /> */}
-          </div>
-          <div className="flex justify-center mt-16">
+                </div>
+              </form>
+            )}
+          </Formik>
+
+          <div className="flex justify-center mt-60">
             Already have an account?{' '}
             <button
               className="hover:border-b-2 hover:border-black duration-100"
               onClick={() => {
-                return navigate('/Login')
+                return navigate('/Login');
               }}
             >
               Login
@@ -133,9 +167,9 @@ const Register = () => {
             className="w-full h-full"
             modules={[Navigation, Pagination, Autoplay]}
             navigation
-            autoplay={{delay: 2000}}
+            autoplay={{ delay: 2000 }}
             slidesPerView={1}
-            pagination={{clickable: true}}
+            pagination={{ clickable: true }}
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
           >
